@@ -1,0 +1,40 @@
+import java.util.*;
+class odd_up_even_up{
+    public int odd_up_even_up(String naam,int n){
+        Random rm = new Random();
+        int num= rm.nextInt(6);
+        int calc= num%2;
+        int score=0;
+        if(calc==n){
+            System.out.println("**** "+naam+" Wins ");
+            score+=1;
+            System.out .println("Dice Showed "+num+" on Upper Side ");
+        }
+        else{
+            System.out.println(" --[ !!! Miss !!! ]-- ");
+            System.out .println("Dice Showed "+num+" on Upper Side ");
+        }
+        return(score);
+    }
+}
+public class Main{
+    public static void main(String [] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("This is A Odd Up- Even Up Game");
+        System.out .print("Your Name = ");
+        String name= sc.nextLine();
+        for(int i=0; i<2;i++){
+            System.out.println("Dice Rolling .....");
+            System.out.println("1) Even Up");
+            System.out.println("2) odd Up");
+            System.out.print("Choice = ");
+            int choice = sc.nextInt();
+            odd_up_even_up oueu = new odd_up_even_up();
+            int scr= oueu.odd_up_even_up(name,choice-1);
+            if(scr>0){
+                System.out.println("***** You Win *****");
+                break;
+            }
+        }
+    }
+}
