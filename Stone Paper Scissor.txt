@@ -1,0 +1,130 @@
+//Stone Paper Scissors:-
+import java.util.*;
+class stone_paper_scissor{
+    int human_Score=0;
+    int Computer_Score=0;
+    public int calculated_stone_paper_scissor(String naam,int cho){
+        Scanner scc= new Scanner(System.in);
+        Random rm= new Random();
+        int num = rm.nextInt(5);
+        int prop= num%3;
+        
+        //now here applying maths to find a random number
+        if(prop==cho){
+            System.out.println("***  Oh no !!!! Miss.....  ***\n ");
+            System.out.println("0) Continue Playing .....");
+            System.out.println("1) Show Move .....");
+            System.out.print("Choice = ");
+            int mov=scc.nextInt();
+            if(mov==1){
+                if(prop==0){
+                    System.out.println("\nComputer --> Stone \n"+naam+" --> Stone");
+                }
+                else if(prop==1){
+                    System.out.println("\nComputer --> Paper \n"+naam+" --> Paper");
+                }
+                else if(prop==2){
+                    System.out.println("\nComputer --> Scissor  \n"+naam+" --> Scissor ");
+                }
+            }
+            System.out.println("____________________________");
+            System.out.println("!!! Miss !!!");
+            return(1);
+        }
+        else{
+            // Code when human Wins
+            if((prop==0 && cho==1) || (prop==1 && cho==2) || (prop==2 && cho==0)){
+                human_Score+=1;
+                System.out.println("--------***** "+naam+" wins *****----------\n");
+                System.out.println("0) Continue Playing .....");
+                System.out.println("1) Show Move .....");
+                System.out.print("Choice = ");
+                int mov=scc.nextInt();
+                if(mov==1){
+                    if(prop==0 && cho==1){
+                        System.out.println("\nComputer --> Stone \n"+naam+" --> Paper");
+                        System.out.println("____________________________");
+                        System.out.println(naam+" wins !!!");
+                    }
+                    else if(prop==1 && cho==2){
+                        System.out.println("\nComputer --> Paper \n"+naam+" --> Scissor");
+                        System.out.println("____________________________");
+                        System.out.println(naam+" wins !!!");
+                    }
+                    else if(prop==2 && cho==0){
+                        System.out.println("\nComputer --> Scissor \n"+naam+" --> Stone");
+                        System.out.println("____________________________");
+                        System.out.println(naam+" wins !!!");
+                    }
+                }// if mov loop end
+                
+            }// if end for human wins
+            else if ((prop==0 && cho==2) || (prop==1 && cho==0) || (prop==2 && cho==1)){
+                Computer_Score+=1;
+                System.out.println("--------***** Computer wins *****----------\n");
+                System.out.println("0) Continue Playing .....");
+                System.out.println("1) Show Move .....");
+                System.out.print("Choice = ");
+                int mov=scc.nextInt();
+                if(mov==1){
+                    if(prop==0 && cho==2){
+                        System.out.println("\nComputer --> Stone \n"+naam+" --> Scissor");
+                        System.out.println("____________________________");
+                        System.out.println("Computer wins !!!");
+                    }
+                    else if(prop==1 && cho==0){
+                        System.out.println("\nComputer --> Paper \n"+naam+" --> Stone");
+                        System.out.println("____________________________");
+                        System.out.println("Computer wins !!!");
+                    }
+                    else if(prop==2 && cho==1){
+                        System.out.println("\nComputer --> Scissor \n"+naam+" --> Paper");
+                        System.out.println("____________________________");
+                        System.out.println("Computer wins !!!");
+                    }
+                }// if mov end for comp
+            }// else end for code comp wins
+            return(1);    
+        }// else end for not same case
+        
+        
+        
+    }// method ending
+    
+    
+}// class ending
+public class Main{
+    public static void main(String[] args){
+        System.out.println("This is a Stone Paper Scissor Game");
+        stone_paper_scissor sps = new stone_paper_scissor();
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter your Name = ");
+        String name= sc.nextLine();
+        while(true){
+            System.out.println("\n1) Stone");
+            System.out.println("2) Paper");
+            System.out.println("3) Scissor");
+            System.out.print("Choice = ");
+            int choice=sc.nextInt();
+            if(choice!=1 && choice !=2 && choice !=3){
+                System.out.println("Invalid Entry !!!");
+            }
+            else{
+                sps.calculated_stone_paper_scissor(name,choice-1);
+            }
+            if(sps.human_Score==5){
+            System.out.println("____________________________");
+            System.out.println("____________________________");
+            System.out.println("Bingo "+name+" Wins !!! Bravo \n Congrats from Shivam");
+            break;
+            
+            }
+            if(sps.Computer_Score==5){
+                System.out.println("____________________________");
+                System.out.println("____________________________");
+                System.out.println("Bingo computer Wins !!! Bravo \n Congrats from Shivam to Computer \n wanna play again !!!");
+                break;
+            }
+        }//while ends
+    }// method end
+}// class end
