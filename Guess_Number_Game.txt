@@ -1,0 +1,70 @@
+import java.util.*;
+class guess_number_game{
+      public int num;
+      public int random_num;
+      int chances=0;
+      
+      public void setnumber(int n){
+            num=n;
+      }
+      public void random_number_Selecting(){
+            Random rm = new Random();
+            random_num = rm.nextInt(100);
+            
+            
+      }
+      public int count_chances(){
+            chances+=1;
+            return (chances);
+            
+      }
+      public int check_code(){
+            if(num == random_num){
+                  System.out.println(" Great you Guessed the right number "+ random_num+" You took "+ count_chances());
+                  return 1;
+            }
+            else{
+                  if(num > random_num){
+                        System.out.println("You Choosed a number greater than the Actual Number \n ");
+                        count_chances();
+                        if((num - random_num)<10){
+                              System.out.println("Believe me you are very close Just think a bit and Guess ..... ");
+                        }
+                        
+                  }
+                  else if(num < random_num){
+                        System.out.println("You choosed a number less than the Actual Number");
+                        count_chances();
+                        if((random_num - num)<10){
+                              System.out.println("Believe me you are very close Just think a bit and Guess ..... ");
+                        }
+                  }
+                  return 0;
+            }
+      }
+      
+      
+}
+
+
+public class Main{
+      public static void main (String[] args) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("This is a Guess Number Game :\n");
+            System.out.println("In this game you are suppose to guess a number \n between 0 - 100 and if you are able to guess the number in minimum number of chances\n then u would be winner here" );
+            System.out.println("\n ready to play ....");
+            
+            guess_number_game gng = new guess_number_game();
+            gng.random_number_Selecting();
+            while(true){
+                  System.out.print("\n Guess a number between 0-100 = ");
+                  int a = sc.nextInt();
+                  gng.setnumber(a);
+                  int status=gng.check_code();
+                  if(status==1){
+                        System.out.println("Congrats you managed to guess the number in "+ gng.chances+" Chance !!!");
+                        break;
+                  }
+            }
+      }
+}
